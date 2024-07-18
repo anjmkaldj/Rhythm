@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <style>
+        body {
+            background-image: url("{% static 'images/reg.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        #form {
+            width: 25rem;
+            height: 35rem;
+            background-color: white;
+            padding: 2rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-title {
+            font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size:1.25rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 0.25rem;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #be0e0e;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+</head>
+<body>
+    <form method="post" id="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h5 class="card-title">Create an Account</h5>
+        <div class="form-group">
+            Full name: <input type="text" name="fullname"><br>
+        </div>
+        <div class="form-group">
+            Email: <input type="text" name="email"><br>
+        </div>
+        <div class="form-group">
+            Phone: <input type="number" name="phone"><br>
+        </div>
+        <div class="form-group">
+            Profile picture: <input type="file" name="propic"><br>
+        </div>
+        <div class="form-group">
+            Password: <input type="password" name="password"><br>
+        </div>
+        <div class="form-group">
+            Confirm password: <input type="password" name="cpassword"><br>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="register">
+        </div>
+        <div class="login-link">
+            <h4>Already have an account?</h4>
+            <a href="http://127.0.0.1:8000/musicapp/userlogin/">Signin</a>
+
+        </div>
+    </form>
+</body>
+</html>

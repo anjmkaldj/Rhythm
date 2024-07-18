@@ -1,0 +1,17 @@
+<div class="container">
+    <h2>Your Recordings</h2>
+    <ul>
+        {% for recording in recordings %}
+            <li>
+                <p>Recorded on: {{ recording.timestamp }}</p>
+                <p>
+                    {% if recording.combined_file %}
+                        <a href="{{ recording.combined_file.url }}" download>Download Combined Audio</a>
+                    {% else %}
+                        No combined audio file available
+                    {% endif %}
+                </p>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

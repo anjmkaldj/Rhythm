@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+   <p>Thank you for your order!</p>
+{% for item in order_items %}
+   <ul>
+    <li>
+        <p>Song Name :{{ item.song_name}}</p> #list key name
+        <p>Price:{{item.price}}</p>
+        <p>Quantity:{{ item.quantity}}</p>
+    </li>
+   </ul>
+{% endfor %}
+
+<p></p>
+
+</body>
+</html>

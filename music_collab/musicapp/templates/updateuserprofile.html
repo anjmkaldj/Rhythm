@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+    Fullname:<input type="text" name="fullname" value="{{data.fullname}}"><br><br>
+    Email:<input type="text" name="email" value="{{data.email}}"><br><br>
+    Phone:<input type="number" name="phone" value="{{data.phone}}"><br><br>
+
+    Propic:<img src="{{data.pro_pic.url}}" height="200px" width="200px">
+    <input type="file" name="propic">
+
+    <input type="submit" value="update">
+
+</form>
+
+</body>
+</html>

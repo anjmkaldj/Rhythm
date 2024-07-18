@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% for i in db %}
+<img src="{{i.item.image.url}}" width="100px" height="100px">
+<h4>{{i.item.song_name}}</h4>
+<h4>{{i.item.des}}</h4>
+<h4>{{i.item.price}}</h4>
+ <audio controls>
+     <source src="{{ i.item.mp3_file.url }}" type="audio/mpeg">
+     Your browser does not support the audio element.
+ </audio>
+<br><br>
+<a href="http://127.0.0.1:8000/musicapp/remove/{{i.id}}"><button type="submit" >remove</button></a><br><br>
+
+{% endfor %}
+
+<a href="http://127.0.0.1:8000/musicapp/addaddress/"><button>Add to payment</button></a>
+
+</body>
+</html>
+
+

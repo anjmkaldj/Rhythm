@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <style>
+        body{
+        background-image:url("{% static 'images/mic.jpg' %}") ;
+         height: 50vh;
+
+        }
+        #img{
+        display:flex;
+        justify-content:center;
+
+        }
+        #form{
+
+        width:25rem;
+        height:18rem;
+        position:relative;
+        left:30rem;
+        top:9rem;
+        justify-content:center;
+        }
+
+
+        #title{
+
+        color:white;
+        position:relative;
+        display: flex;
+        justify-content: center;
+        font-size:20px;
+
+        left:6rem;
+        top:5rem;
+
+            }
+
+    .total{
+    display:flex;
+     justify-content:center;
+    }
+
+
+
+      .details input{
+        position:relative;
+        top:5rem;
+        right:9rem;
+        left:20rem;
+
+        background-color:rgba(90, 93, 94, 0.5);
+        height:3.5rem;
+        width:400px;
+        border-radius: .25rem;
+        color:white;
+        border-style:none;
+
+      }
+
+      .details2 input{
+        position:relative;
+        top:9rem;
+        left:-5.25rem;
+
+        background-color:rgba(90, 93, 94, 0.5);
+        height:3.5rem;
+        width:400px;
+        border-radius: .25rem;
+        color:white;
+        border-style:none;
+
+      }
+
+
+
+
+         #r {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        input[type="submit"] {
+        position:relative;
+        top:8rem;
+        left:7.5rem;
+            width: 100%;
+            height: 3rem;
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        input[type="submit"]:hover {
+            background-color: white;
+            color: black;
+
+            }
+
+
+         .rest a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position:relative;
+            top:7rem;
+            left:15rem;
+        }
+
+        .rest a:hover {
+            color: #0056b3;
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form method="post" id="form">{% csrf_token %}
+    <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title" id="title">LOGIN</h5>
+<div class="total">
+      <div class="details" id="email">
+
+    <input type="email"  name="email" placeholder="Email Address" style="text-align:justify;"><br><br>
+          </div>
+          <div class="details" id="pass">
+      <div class="details2" >
+
+    <input type="password" name="password" placeholder="Password" style="text-align:justify;"><br><br>
+      </div>
+          </div>
+      <br>
+    </div>
+
+      <div class="rest" id="r">
+    <input type="submit" value="login"><br><br>
+
+    <a href="#">forgot password?</a>
+      </div>
+  </div>
+</div>
+
+</form>
+
+</body>
+</html>

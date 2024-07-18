@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+    Fullname:<input type="text" name="songname" value="{{data.song_name}}"><br><br>
+    Email:<input type="text" name="price" value="{{data.price}}"><br><br>
+    Phone:<input type="text" name="des" value="{{data.des}}"><br><br>
+            category:<input type="text" name="category" value="{{data.category}}"><br><br>
+
+     <select name="genre">
+         <option value="malayalam"{% if data.genre == 'malayalam' %}selected{% endif %}>malayalam
+         <option value="tamil"{% if data.genre == 'Tamil' %}selected{% endif %}>tamil
+
+     </select><br><br>
+
+    Song title pic:<img src="{{data.image.url}}" height="200px" width="200px">
+    <input type="file" name="image">
+
+    <input type="submit" value="update">
+
+</form>
+
+
+</body>
+</html>

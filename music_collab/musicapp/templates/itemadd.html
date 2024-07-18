@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+     SONG NAME: <input type="text" name="songname"><br><br>
+     SONG PRICE:<input type="number" name="price"><br><br>
+    SONG IMAGE:<input type="file" name="image"><br><br>
+
+
+
+    DESCRIPTION:<input type="text" name="des"><br><br>
+
+
+    <label>CATEGORY:</label>
+    <select name="category">
+        <option>--select category--</option>
+        <option value="malayalam">malayalam</option>
+        <option value="tamil">tamil</option>
+        <option value="english">english</option>
+    </select><br><br>
+
+    SONG: <input type="file" name="mp3_file"><br><br>
+
+
+    <input type="submit" value="submit">
+
+
+</form>
+</body>
+</html>

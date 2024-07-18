@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <script type="text/javascript">
+        function searchFunc() {
+            var input, cards, title;
+            input = document.getElementById("searchinput").value.toUpperCase();
+            cards = document.getElementsByClassName('card')
+            for(i = 0; i < cards.length; i++){
+                title = cards[i].getElementsByClassName('card-title')[0];
+                if (title.innerText.toUpperCase().indexOf(input) > -1) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<style>
+    .sidebar {
+        width: 20%;
+        float: left;
+        padding: 10px;
+        background-color: #f8f9fa;
+        height: 100vh;
+    }
+    .content {
+        width: 80%;
+        float: right;
+        padding: 10px;
+    }
+    .category {
+        margin-top: 10px;
+    }
+</style>
+<body>
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand">Navbar</a>
+        <form class="d-flex">
+            <input class="form-control me-2" id="searchinput" type="search" placeholder="Search" aria-label="Search" onkeyup="searchFunc()">
+        </form>
+    </div>
+</nav>
+
+<div class="sidebar">
+    <h3>Profile Details</h3>
+    <p>Username: {{data.username}}</p>
+    <p>Email: {{data.email}}</p>
+    <h4>Categories</h4>
+    <div class="category">
+        <a href="?category=all">All</a><br>
+        <a href="?category=malayalam">Malayalam</a><br>
+        <a href="?category=tamil">Tamil</a><br>
+        <a href="?category=english">English</a><br>
+    </div>
+</div>
+
+<div class="content">
+    <h3>Details</h3>
+    <p>Name: {{data.fn}}</p>
+    <p>Email: {{data.em}}</p>
+    <a href="http://127.0.0.1:8000/eapp/singleview/" class="btn btn-outline-primary" id="button">View Details</a>
+    <div class="container mt-4">
+        <div class="row">
+            <a href="http://127.0.0.1:8000/creator/songs/" type="button" class="btn btn-primary">upload product</a>
+            {% for i in db %}
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{i.image.url}}" class="card-img-top" style="height:30vh" alt="{{ i.song_name }}">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ i.song_name }}</h2>
+                        <p class="card-text">{{ i.des }}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ i.price }}</li>
+                        <br>
+                        <a href="http://127.0.0.1:8000/creator/itemedit/{{i.id}}" type="button" class="btn btn-primary">EDIT</a>
+                        <a href="http://127.0.0.1:8000/creator/itemdelete/{{i.id}}" type="button" class="btn btn-primary">DELETE</a>
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            height: 100vh;
+        }
+        .sidebar {
+            width: 20%;
+            background-color: #343a40;
+            color: white;
+            padding-top: 20px;
+            padding-left: 20px;
+        }
+        .sidebar img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        .sidebar a {
+            color: white;
+            display: block;
+            margin-bottom: 15px;
+            text-decoration: none;
+        }
+        .main-content {
+            width: 80%;
+            padding: 20px;
+        }
+        .navbar {
+            margin-bottom: 20px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <img src="{% static 'images/profile_pic.jpg' %}" alt="Profile Picture">
+    <a href="#">Liked Tracks</a>
+    <a href="#">Payment Option</a>
+    <a href="#">Settings</a>
+</div>
+
+<div class="main-content">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">MusicApp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Music</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <a href="http://127.0.0.1:8000/musicapp/songs/">Add Song</a>
+    <!-- Cards Section -->
+    <div class="container">
+        <div class="row">
+            {% for db in db %}
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ song.image.url }}" class="card-img-top" style="height:30vh" alt="{{ song.song_name }}">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ db.song_name }}</h2>
+                        <p class="card-text">{{ db.des }}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ db.price }}</li>
+                        <li class="list-group-item">
+                            <p class="card-text">{{ db.des }}</p>
+                            <p class="card-text">{{ db.category }}</p>
+                            <br>
+                            <audio controls>
+                                <source src="{{ db.mp3_file.url }}" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

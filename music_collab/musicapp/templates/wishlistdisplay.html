@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript">
+        // Function to refresh the page every 2 seconds
+        function refreshPage() {
+            window.location.reload(); // Reload the current page
+        }
+
+        // Call the refreshPage function every 2000 milliseconds (2 seconds)
+        setInterval(refreshPage, 2000);
+    </script>
+    <meta charset="UTF-8">
+    <title>Wishlist</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light grey background */
+        }
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+            transition: transform 0.2s; /* Smooth hover effect */
+        }
+        .card:hover {
+            transform: scale(1.05); /* Slight zoom on hover */
+        }
+        .card-img-top {
+            object-fit: cover; /* Ensure the image covers the entire area */
+        }
+        .btn {
+            margin-top: 10px; /* Space between buttons */
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    <div class="container mt-4">
+        <div class="row">
+            {% for i in db %}
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <div class="card h-100">
+                    <img src="{{ i.item.image.url }}" class="card-img-top" width="200px" height="200px" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ i.item.song_name }}</h5>
+                        <p class="card-text">Price: ${{ i.item.price }}</p>
+                        <form method="get" action="http://127.0.0.1:8000/eapp/addtocart/{{ i.item.id }}">
+                            <input type="submit" value="Add to cart" class="btn btn-primary w-100">
+                        </form>
+                        <form method="post" action="http://127.0.0.1:8000/musicapp/removewishlist/{{ i.id }}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger w-100">Remove from Wishlist</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
